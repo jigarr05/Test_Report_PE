@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test Report Generator</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <img src="logo_pe.JPG" alt="Parth Electricals Logo" class="logo">
+    <div class="brand-copy">
+      <h1>Parth Electricals</h1>
+      <h2>Test Report Generator</h2>
+    </div>
+  </header>
+  
+  <section id="input">
+    <form id="testReportForm">
+      <div class="form-field">
+        <label for="equipment">Equipment</label>
+        <select id="equipment" name="equipment">
+          <option value="lights">Lights</option>
+          <option value="fan">Fan</option>
+          <option value="plug5a">5A Plug</option>
+          <option value="plug15a">15A Plug</option>
+          <option value="ac">AC</option>
+          <option value="geyser">Geyser</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+
+      <div id="otherDetails" style="display: none;">
+        <label for="otherEquipment">Equipment name</label>
+        <input type="text" id="otherEquipment" name="otherEquipment">
+      </div>
+
+      <div class="form-field">
+        <label for="quantity">Quantity</label>
+        <div class="quantity-controls">
+          <button type="button" id="decreaseQuantity" aria-label="Decrease quantity">−</button>
+          <input type="number" id="quantity" name="quantity" min="1" value="1">
+          <button type="button" id="increaseQuantity" aria-label="Increase quantity">+</button>
+        </div>
+      </div>
+
+      <div class="form-field">
+        <label for="watt">Watt per unit</label>
+        <div class="input-with-unit">
+          <input type="number" id="watt" name="watt" min="1" value="1">
+          <span>W</span>
+        </div>
+      </div>
+
+      <button type="submit">Add to report <span aria-hidden="true">→</span></button>
+    </form>
+  </section>
+
+  <section id="report">
+    <h3>Test Report</h3>
+    <div class="table-wrap">
+    <table id="reportTable">
+      <thead>
+        <tr>
+          <th>Equipment</th>
+          <th colspan="2">Single Unit</th>
+          <th colspan="2">R Phase</th>
+          <th colspan="2">Y Phase</th>  
+          <th colspan="2">B Phase</th>
+          <th colspan="2">Total Wattage</th>
+          <th rowspan="2">Adjust Quantity</th>
+        </tr>
+        <tr>
+          <th></th>
+          <!-- Single Unit -->
+          <th>No.</th>
+          <th>Watt</th>
+          <!-- R Phase -->
+          <th>No.</th>
+          <th>Watt</th>
+          <!-- Y Phase -->
+          <th>No</th>
+          <th>Watt</th>
+          <!-- B Phase -->
+          <th>No.</th>
+          <th>Watt</th>
+          <!-- Total Wattage -->
+           <th>Total No</th>
+           <th>Total Watt</th>
+        </tr>
+        
+          
+
+      </thead>
+      <tbody>
+        <!-- Report rows will be added here -->
+         <tr id="lights">
+          <td>Lights</td>
+          <td id="lightsSingleNo"></td>
+          <td id="lightsSingleWatt"></td>
+          <td id="lightsRNo"></td>
+          <td id="lightsRWatt"></td>
+          <td id="lightsYNo"></td>
+          <td id="lightsYWatt"></td>
+          <td id="lightsBNo"></td>
+          <td id="lightsBWatt"></td>
+          <td id="lightsTotalNo"></td>
+          <td id="lightsTotalWatt"></td>
+        </tr>
+        <tr id="fan">
+          <td>Fan</td>
+          <td id="fanSingleNo"></td>
+          <td id="fanSingleWatt"></td>
+          <td id="fanRNo"></td>
+          <td id="fanRWatt"></td>
+          <td id="fanYNo"></td>
+          <td id="fanYWatt"></td>
+          <td id="fanBNo"></td>
+          <td id="fanBWatt"></td>
+          <td id="fanTotalNo"></td>
+          <td id="fanTotalWatt"></td>
+        </tr>
+        <tr id="plug5a">
+          <td>5A Plug</td>
+          <td id="plug5aSingleNo"></td>
+          <td id="plug5aSingleWatt"></td>
+          <td id="plug5aRNo"></td>
+          <td id="plug5aRWatt"></td>
+          <td id="plug5aYNo"></td>
+          <td id="plug5aYWatt"></td>
+          <td id="plug5aBNo"></td>
+          <td id="plug5aBWatt"></td>
+          <td id="plug5aTotalNo"></td>
+          <td id="plug5aTotalWatt"></td>
+          </tr>
+        <tr id="plug15a">
+          <td>15A Plug</td>
+          <td id="plug15aSingleNo"></td>
+          <td id="plug15aSingleWatt"></td>
+          <td id="plug15aRNo"></td>
+          <td id="plug15aRWatt"></td>
+          <td id="plug15aYNo"></td>
+          <td id="plug15aYWatt"></td>
+          <td id="plug15aBNo"></td>
+          <td id="plug15aBWatt"></td>
+          <td id="plug15aTotalNo"></td>
+          <td id="plug15aTotalWatt"></td>
+        </tr>
+        <tr id="ac">
+          <td>AC</td>
+          <td id="acSingleNo"></td>
+          <td id="acSingleWatt"></td>
+          <td id="acRNo"></td>
+          <td id="acRWatt"></td>
+          <td id="acYNo"></td>
+          <td id="acYWatt"></td>
+          <td id="acBNo"></td>
+          <td id="acBWatt"></td>
+          <td id="acTotalNo"></td>
+          <td id="acTotalWatt"></td>
+        </tr>
+        <tr id="geyser">
+          <td>Geyser</td>
+          <td id="geyserSingleNo"></td>
+          <td id="geyserSingleWatt"></td>
+          <td id="geyserRNo"></td>
+          <td id="geyserRWatt"></td>
+          <td id="geyserYNo"></td>
+          <td id="geyserYWatt"></td>
+          <td id="geyserBNo"></td>
+          <td id="geyserBWatt"></td>
+          <td id="geyserTotalNo"></td>
+          <td id="geyserTotalWatt"></td>
+        </tr>
+        <tr id="other-1" hidden>
+          <td>Other</td> 
+          <td id="other-1SingleNo"></td>
+          <td id="other-1SingleWatt"></td>
+          <td id="other-1RNo"></td>
+          <td id="other-1RWatt"></td>
+          <td id="other-1YNo"></td>
+          <td id="other-1YWatt"></td>
+          <td id="other-1BNo"></td>
+          <td id="other-1BWatt"></td>
+          <td id="other-1TotalNo"></td>
+          <td id="other-1TotalWatt"></td>
+        </tr> 
+        <tr id="other-2" hidden>
+          <td>Other</td> 
+          <td id="other-2SingleNo"></td>
+          <td id="other-2SingleWatt"></td>
+          <td id="other-2RNo"></td>
+          <td id="other-2RWatt"></td>
+          <td id="other-2YNo"></td>
+          <td id="other-2YWatt"></td>
+          <td id="other-2BNo"></td>
+          <td id="other-2BWatt"></td>
+          <td id="other-2TotalNo"></td>
+          <td id="other-2TotalWatt"></td>
+        </tr>
+        <tr id="other-3" hidden>
+          <td>Other</td>
+          <td id="other-3SingleNo"></td>
+          <td id="other-3SingleWatt"></td>
+          <td id="other-3RNo"></td>
+          <td id="other-3RWatt"></td>
+          <td id="other-3YNo"></td>
+          <td id="other-3YWatt"></td>
+          <td id="other-3BNo"></td>
+          <td id="other-3BWatt"></td>
+          <td id="other-3TotalNo"></td>
+          <td id="other-3TotalWatt"></td>
+        </tr>
+        <tr id="other-4" hidden>
+          <td>Other</td>
+          <td id="other-4SingleNo"></td>
+          <td id="other-4SingleWatt"></td>
+          <td id="other-4RNo"></td>
+          <td id="other-4RWatt"></td>
+          <td id="other-4YNo"></td>
+          <td id="other-4YWatt"></td>
+          <td id="other-4BNo"></td>
+          <td id="other-4BWatt"></td>
+          <td id="other-4TotalNo"></td>
+          <td id="other-4TotalWatt"></td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+    <div id="totals">
+      <div class="total-card">
+        <span class="total-label">Total Quantity</span>
+        <strong><span id="totalQuantityValue">0</span><span class="total-unit"> units</span></strong>
+      </div>
+      <div class="total-card total-card-wattage">
+        <span class="total-label">Total Wattage</span>
+        <strong><span id="totalWattValue">0</span><span class="total-unit"> W</span></strong>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </section>
+</body>
+</html>

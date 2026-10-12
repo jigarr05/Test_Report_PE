@@ -1,0 +1,587 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap");
+
+:root {
+  color-scheme: light;
+  font-family: "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #17243b;
+  background: #f4f6fa;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  --navy: #132a54;
+  --navy-deep: #0d1e3c;
+  --orange: #f29b19;
+  --muted: #6f7d91;
+  --line: #e5eaf1;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-width: 320px;
+  margin: 0;
+  background:
+    radial-gradient(ellipse at 15% 0%, rgb(242 155 25 / 8%), transparent 34rem),
+    #f4f6fa;
+}
+
+header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  min-height: 190px;
+  padding: 30px max(6vw, calc((100vw - 1320px) / 2));
+  overflow: hidden;
+  color: #fff;
+  background: linear-gradient(115deg, var(--navy-deep), #183967 72%, #204778);
+}
+
+header::after {
+  position: absolute;
+  right: -85px;
+  bottom: -210px;
+  width: 440px;
+  height: 300px;
+  border: 1px solid rgb(255 255 255 / 12%);
+  border-radius: 50%;
+  box-shadow: 0 0 0 30px rgb(255 255 255 / 3%), 0 0 0 65px rgb(255 255 255 / 3%);
+  content: "";
+  pointer-events: none;
+}
+
+.logo {
+  z-index: 1;
+  width: 112px;
+  height: 112px;
+  flex: 0 0 112px;
+  padding: 5px;
+  border: 1px solid rgb(255 255 255 / 20%);
+  border-radius: 24px;
+  background: #fff;
+  object-fit: contain;
+  box-shadow: 0 12px 34px rgb(0 0 0 / 18%);
+}
+
+header .brand-copy {
+  position: relative;
+  z-index: 1;
+}
+
+header h1,
+header h2 {
+  position: relative;
+  margin: 0;
+  font-family: Manrope, "DM Sans", sans-serif;
+}
+
+header h1 {
+  font-size: clamp(1.55rem, 3vw, 2.2rem);
+  font-weight: 800;
+  letter-spacing: -0.045em;
+}
+
+header h2 {
+  margin-top: 5px;
+  color: #c7d5e9;
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+body > #input,
+body > #report {
+  width: min(1320px, calc(100% - 48px));
+  margin-right: auto;
+  margin-left: auto;
+}
+
+#input {
+  position: relative;
+  z-index: 2;
+  margin-top: -28px;
+}
+
+#testReportForm {
+  display: grid;
+  grid-template-columns: minmax(210px, 1.35fr) minmax(190px, 1fr) minmax(180px, 1fr) auto;
+  align-items: end;
+  gap: 20px;
+  padding: 26px;
+  border: 1px solid rgb(229 234 241 / 85%);
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 18px 50px rgb(22 42 76 / 10%);
+}
+
+.form-field {
+  display: grid;
+  min-width: 0;
+  gap: 9px;
+}
+
+.form-field label,
+#otherDetails label {
+  color: #46566e;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+select,
+input[type="number"],
+input[type="text"] {
+  width: 100%;
+  min-width: 0;
+  height: 46px;
+  padding: 0 13px;
+  border: 1px solid #dce3ed;
+  border-radius: 10px;
+  outline: none;
+  color: #182843;
+  background: #fbfcfe;
+  font: inherit;
+  transition: border-color 150ms ease, box-shadow 150ms ease, background 150ms ease;
+}
+
+select:focus,
+input:focus {
+  border-color: #4e75ad;
+  background: #fff;
+  box-shadow: 0 0 0 3px rgb(55 104 168 / 13%);
+}
+
+.quantity-controls {
+  display: flex;
+  height: 46px;
+  align-items: center;
+  overflow: hidden;
+  border: 1px solid #dce3ed;
+  border-radius: 10px;
+  background: #fbfcfe;
+}
+
+.quantity-controls input[type="number"] {
+  height: 100%;
+  padding: 0 4px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  text-align: center;
+  appearance: textfield;
+  -moz-appearance: textfield;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  margin: 0;
+  appearance: none;
+}
+
+.quantity-controls button {
+  display: grid;
+  width: 44px;
+  height: 100%;
+  flex: 0 0 44px;
+  place-items: center;
+  border: 0;
+  color: var(--navy);
+  background: transparent;
+  font: inherit;
+  font-size: 1.25rem;
+  cursor: pointer;
+  transition: background 150ms ease, color 150ms ease;
+}
+
+.quantity-controls button:hover:not(:disabled) {
+  color: #fff;
+  background: var(--navy);
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.input-with-unit {
+  position: relative;
+}
+
+.input-with-unit input {
+  padding-right: 40px;
+}
+
+.input-with-unit span {
+  position: absolute;
+  top: 50%;
+  right: 14px;
+  color: var(--muted);
+  font-size: 0.84rem;
+  transform: translateY(-50%);
+}
+
+#otherDetails {
+  grid-column: 1 / -1;
+  display: grid !important;
+  grid-template-columns: 1fr minmax(210px, 2fr);
+  align-items: center;
+  gap: 14px;
+}
+
+#otherDetails[style*="display: none"] {
+  display: none !important;
+}
+
+#testReportForm > button[type="submit"] {
+  display: inline-flex;
+  min-width: 164px;
+  height: 46px;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 0 20px;
+  border: 0;
+  border-radius: 10px;
+  color: #fff;
+  background: linear-gradient(135deg, #f3a21e, #ed8515);
+  box-shadow: 0 7px 16px rgb(237 133 21 / 22%);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 150ms ease, box-shadow 150ms ease;
+}
+
+#testReportForm > button[type="submit"]:hover {
+  box-shadow: 0 10px 22px rgb(237 133 21 / 32%);
+  transform: translateY(-1px);
+}
+
+#testReportForm > button[type="submit"] span {
+  font-size: 1.2rem;
+}
+
+#report {
+  margin-top: 36px;
+  margin-bottom: 56px;
+  padding: 26px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 12px 36px rgb(22 42 76 / 5%);
+}
+
+#report h3 {
+  margin: 0 0 20px;
+  color: var(--navy-deep);
+  font-family: Manrope, "DM Sans", sans-serif;
+  font-size: 1.35rem;
+  font-weight: 800;
+  letter-spacing: -0.035em;
+}
+
+#totals {
+  display: flex;
+  justify-content: flex-end;
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.total-card {
+  display: grid;
+  min-width: 190px;
+  gap: 6px;
+  padding: 15px 20px;
+  border: 1px solid #e5eaf1;
+  border-radius: 12px;
+  background: #f7f9fc;
+}
+
+.total-card-wattage {
+  border-color: #e8d3ae;
+  background: #fff8ec;
+}
+
+.total-label {
+  color: var(--muted);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.total-card strong {
+  color: var(--navy);
+  font-family: Manrope, "DM Sans", sans-serif;
+  font-size: 1.6rem;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.total-card-wattage strong {
+  color: #bd7410;
+}
+
+.total-unit {
+  color: var(--muted);
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+
+#reportTable {
+  width: 100%;
+  min-width: 960px;
+  border-collapse: separate;
+  border-spacing: 0;
+  color: #36465e;
+  font-size: 0.86rem;
+  text-align: center;
+}
+
+#reportTable th,
+#reportTable td {
+  padding: 12px 10px;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  white-space: nowrap;
+}
+
+#reportTable th:last-child,
+#reportTable td:last-child {
+  border-right: 0;
+}
+
+#reportTable thead tr:first-child th {
+  padding-top: 13px;
+  padding-bottom: 13px;
+  color: #fff;
+  background: var(--navy);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.025em;
+}
+
+#reportTable thead tr:first-child th:first-child {
+  border-top-left-radius: 11px;
+}
+
+#reportTable thead tr:first-child th:last-child {
+  border-top-right-radius: 11px;
+}
+
+#reportTable thead tr:first-child th:nth-child(4) {
+  background: #b74648;
+}
+
+#reportTable thead tr:first-child th:nth-child(5) {
+  color: #33260d;
+  background: #efb536;
+}
+
+#reportTable thead tr:first-child th:nth-child(6) {
+  background: #386ea8;
+}
+
+#reportTable thead tr:first-child th:nth-child(7) {
+  background: #234674;
+}
+
+#reportTable thead tr:nth-child(2) th {
+  padding-top: 9px;
+  padding-bottom: 9px;
+  color: #66758a;
+  background: #f5f7fa;
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+#reportTable tbody tr {
+  transition: background 120ms ease;
+}
+
+#reportTable tbody tr:hover {
+  background: #f8faff;
+}
+
+#reportTable tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+#reportTable tbody td:first-child {
+  color: #1c3152;
+  font-weight: 700;
+  text-align: left;
+}
+
+#reportTable tbody td:nth-child(10),
+#reportTable tbody td:nth-child(11) {
+  color: #183966;
+  font-weight: 700;
+}
+
+.row-quantity-controls {
+  min-width: 98px;
+  white-space: nowrap;
+}
+
+.single-unit-wattage {
+  width: 76px;
+  min-width: 0;
+  height: 34px;
+  padding: 0 6px;
+  border: 1px solid #dce3ed;
+  border-radius: 7px;
+  color: #183966;
+  background: #fff;
+  font: inherit;
+  font-weight: 700;
+  text-align: center;
+}
+
+.row-quantity-controls button {
+  width: 30px;
+  height: 30px;
+  margin: 0 2px;
+  border: 1px solid #dce4ef;
+  border-radius: 8px;
+  color: var(--navy);
+  background: #fff;
+  font: inherit;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: border-color 140ms ease, color 140ms ease, background 140ms ease;
+}
+
+.row-quantity-controls button:hover:not(:disabled) {
+  border-color: var(--navy);
+  color: #fff;
+  background: var(--navy);
+}
+
+@media (max-width: 800px) {
+  header {
+    min-height: 164px;
+    gap: 16px;
+    padding: 26px 24px 38px;
+  }
+
+  .logo {
+    width: 88px;
+    height: 88px;
+    flex-basis: 88px;
+    border-radius: 19px;
+  }
+
+  body > #input,
+  body > #report {
+    width: calc(100% - 32px);
+  }
+
+  #testReportForm {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+    padding: 20px;
+  }
+
+  #testReportForm > button[type="submit"] {
+    width: 100%;
+  }
+
+  #report {
+    margin-top: 24px;
+    padding: 20px;
+  }
+
+  #totals {
+    justify-content: stretch;
+  }
+
+  .total-card {
+    min-width: 0;
+    flex: 1;
+    padding: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  header {
+    min-height: 142px;
+    gap: 13px;
+    padding: 22px 18px 34px;
+  }
+
+  .logo {
+    width: 70px;
+    height: 70px;
+    flex-basis: 70px;
+    padding: 3px;
+    border-radius: 16px;
+  }
+
+  header h2 {
+    font-size: 0.88rem;
+  }
+
+  body > #input,
+  body > #report {
+    width: calc(100% - 24px);
+  }
+
+  #input {
+    margin-top: -20px;
+  }
+
+  #testReportForm {
+    grid-template-columns: 1fr;
+    gap: 14px;
+    padding: 18px;
+  }
+
+  #otherDetails {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  #report {
+    margin-top: 18px;
+    padding: 17px 13px;
+  }
+
+  #report h3 {
+    margin-bottom: 14px;
+  }
+
+  #totals {
+    gap: 9px;
+    margin-top: 13px;
+  }
+
+  .total-card {
+    padding: 12px;
+  }
+
+  .total-card strong {
+    font-size: 1.3rem;
+  }
+
+  .total-label {
+    font-size: 0.68rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
