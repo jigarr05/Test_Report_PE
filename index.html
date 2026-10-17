@@ -1,243 +1,116 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Test Report Generator</title>
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-  <header>
-    <img src="logo_pe.JPG" alt="Parth Electricals Logo" class="logo">
-    <div class="brand-copy">
-      <h1>Parth Electricals</h1>
-      <h2>Test Report Generator</h2>
-    </div>
-  </header>
-  
-  <section id="input">
-    <form id="testReportForm">
-      <div class="form-field">
-        <label for="equipment">Equipment</label>
-        <select id="equipment" name="equipment">
-          <option value="lights">Lights</option>
-          <option value="fan">Fan</option>
-          <option value="plug5a">5A Plug</option>
-          <option value="plug15a">15A Plug</option>
-          <option value="ac">AC</option>
-          <option value="geyser">Geyser</option>
-          <option value="other">Other</option>
-        </select>
-      </div>
-
-      <div id="otherDetails" style="display: none;">
-        <label for="otherEquipment">Equipment name</label>
-        <input type="text" id="otherEquipment" name="otherEquipment">
-      </div>
-
-      <div class="form-field">
-        <label for="quantity">Quantity</label>
-        <div class="quantity-controls">
-          <button type="button" id="decreaseQuantity" aria-label="Decrease quantity">−</button>
-          <input type="number" id="quantity" name="quantity" min="1" value="1">
-          <button type="button" id="increaseQuantity" aria-label="Increase quantity">+</button>
-        </div>
-      </div>
-
-      <div class="form-field">
-        <label for="watt">Watt per unit</label>
-        <div class="input-with-unit">
-          <input type="number" id="watt" name="watt" min="1" value="1">
-          <span>W</span>
-        </div>
-      </div>
-
-      <button type="submit">Add to report <span aria-hidden="true">→</span></button>
-    </form>
-  </section>
-
-  <section id="report">
-    <h3>Test Report</h3>
-    <div class="table-wrap">
-    <table id="reportTable">
-      <thead>
-        <tr>
-          <th>Equipment</th>
-          <th colspan="2">Single Unit</th>
-          <th colspan="2">R Phase</th>
-          <th colspan="2">Y Phase</th>  
-          <th colspan="2">B Phase</th>
-          <th colspan="2">Total Wattage</th>
-          <th rowspan="2">Adjust Quantity</th>
-        </tr>
-        <tr>
-          <th></th>
-          <!-- Single Unit -->
-          <th>No.</th>
-          <th>Watt</th>
-          <!-- R Phase -->
-          <th>No.</th>
-          <th>Watt</th>
-          <!-- Y Phase -->
-          <th>No</th>
-          <th>Watt</th>
-          <!-- B Phase -->
-          <th>No.</th>
-          <th>Watt</th>
-          <!-- Total Wattage -->
-           <th>Total No</th>
-           <th>Total Watt</th>
-        </tr>
-        
-          
-
-      </thead>
-      <tbody>
-        <!-- Report rows will be added here -->
-         <tr id="lights">
-          <td>Lights</td>
-          <td id="lightsSingleNo"></td>
-          <td id="lightsSingleWatt"></td>
-          <td id="lightsRNo"></td>
-          <td id="lightsRWatt"></td>
-          <td id="lightsYNo"></td>
-          <td id="lightsYWatt"></td>
-          <td id="lightsBNo"></td>
-          <td id="lightsBWatt"></td>
-          <td id="lightsTotalNo"></td>
-          <td id="lightsTotalWatt"></td>
-        </tr>
-        <tr id="fan">
-          <td>Fan</td>
-          <td id="fanSingleNo"></td>
-          <td id="fanSingleWatt"></td>
-          <td id="fanRNo"></td>
-          <td id="fanRWatt"></td>
-          <td id="fanYNo"></td>
-          <td id="fanYWatt"></td>
-          <td id="fanBNo"></td>
-          <td id="fanBWatt"></td>
-          <td id="fanTotalNo"></td>
-          <td id="fanTotalWatt"></td>
-        </tr>
-        <tr id="plug5a">
-          <td>5A Plug</td>
-          <td id="plug5aSingleNo"></td>
-          <td id="plug5aSingleWatt"></td>
-          <td id="plug5aRNo"></td>
-          <td id="plug5aRWatt"></td>
-          <td id="plug5aYNo"></td>
-          <td id="plug5aYWatt"></td>
-          <td id="plug5aBNo"></td>
-          <td id="plug5aBWatt"></td>
-          <td id="plug5aTotalNo"></td>
-          <td id="plug5aTotalWatt"></td>
-          </tr>
-        <tr id="plug15a">
-          <td>15A Plug</td>
-          <td id="plug15aSingleNo"></td>
-          <td id="plug15aSingleWatt"></td>
-          <td id="plug15aRNo"></td>
-          <td id="plug15aRWatt"></td>
-          <td id="plug15aYNo"></td>
-          <td id="plug15aYWatt"></td>
-          <td id="plug15aBNo"></td>
-          <td id="plug15aBWatt"></td>
-          <td id="plug15aTotalNo"></td>
-          <td id="plug15aTotalWatt"></td>
-        </tr>
-        <tr id="ac">
-          <td>AC</td>
-          <td id="acSingleNo"></td>
-          <td id="acSingleWatt"></td>
-          <td id="acRNo"></td>
-          <td id="acRWatt"></td>
-          <td id="acYNo"></td>
-          <td id="acYWatt"></td>
-          <td id="acBNo"></td>
-          <td id="acBWatt"></td>
-          <td id="acTotalNo"></td>
-          <td id="acTotalWatt"></td>
-        </tr>
-        <tr id="geyser">
-          <td>Geyser</td>
-          <td id="geyserSingleNo"></td>
-          <td id="geyserSingleWatt"></td>
-          <td id="geyserRNo"></td>
-          <td id="geyserRWatt"></td>
-          <td id="geyserYNo"></td>
-          <td id="geyserYWatt"></td>
-          <td id="geyserBNo"></td>
-          <td id="geyserBWatt"></td>
-          <td id="geyserTotalNo"></td>
-          <td id="geyserTotalWatt"></td>
-        </tr>
-        <tr id="other-1" hidden>
-          <td>Other</td> 
-          <td id="other-1SingleNo"></td>
-          <td id="other-1SingleWatt"></td>
-          <td id="other-1RNo"></td>
-          <td id="other-1RWatt"></td>
-          <td id="other-1YNo"></td>
-          <td id="other-1YWatt"></td>
-          <td id="other-1BNo"></td>
-          <td id="other-1BWatt"></td>
-          <td id="other-1TotalNo"></td>
-          <td id="other-1TotalWatt"></td>
-        </tr> 
-        <tr id="other-2" hidden>
-          <td>Other</td> 
-          <td id="other-2SingleNo"></td>
-          <td id="other-2SingleWatt"></td>
-          <td id="other-2RNo"></td>
-          <td id="other-2RWatt"></td>
-          <td id="other-2YNo"></td>
-          <td id="other-2YWatt"></td>
-          <td id="other-2BNo"></td>
-          <td id="other-2BWatt"></td>
-          <td id="other-2TotalNo"></td>
-          <td id="other-2TotalWatt"></td>
-        </tr>
-        <tr id="other-3" hidden>
-          <td>Other</td>
-          <td id="other-3SingleNo"></td>
-          <td id="other-3SingleWatt"></td>
-          <td id="other-3RNo"></td>
-          <td id="other-3RWatt"></td>
-          <td id="other-3YNo"></td>
-          <td id="other-3YWatt"></td>
-          <td id="other-3BNo"></td>
-          <td id="other-3BWatt"></td>
-          <td id="other-3TotalNo"></td>
-          <td id="other-3TotalWatt"></td>
-        </tr>
-        <tr id="other-4" hidden>
-          <td>Other</td>
-          <td id="other-4SingleNo"></td>
-          <td id="other-4SingleWatt"></td>
-          <td id="other-4RNo"></td>
-          <td id="other-4RWatt"></td>
-          <td id="other-4YNo"></td>
-          <td id="other-4YWatt"></td>
-          <td id="other-4BNo"></td>
-          <td id="other-4BWatt"></td>
-          <td id="other-4TotalNo"></td>
-          <td id="other-4TotalWatt"></td>
-        </tr>
-      </tbody>
-    </table>
-    </div>
-    <div id="totals">
-      <div class="total-card">
-        <span class="total-label">Total Quantity</span>
-        <strong><span id="totalQuantityValue">0</span><span class="total-unit"> units</span></strong>
-      </div>
-      <div class="total-card total-card-wattage">
-        <span class="total-label">Total Wattage</span>
-        <strong><span id="totalWattValue">0</span><span class="total-unit"> W</span></strong>
-      </div>
-    </div>
-    <script src="script.js"></script>
-  </section>
-</body>
-</html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Three Phase Load Distribution</title>
+<style>
+:root{color-scheme:light;--bg:#fff;--tx:#333;--bd:#bdbdbd;--mut:#777;--in:#fff;--hl:#f0f0f0;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:Arial,Helvetica,sans-serif}
+.wrap{max-width:1000px;margin:0 auto;padding:16px}
+.scroll{overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:760px;border:2px solid var(--bd)}
+th,td{border:1px solid var(--bd);padding:4px 6px;text-align:center;font-weight:400}
+thead th{height:34px;font-size:15px}
+tbody td{height:58px}
+th.no,td.no{width:7%}
+input{font:inherit;font-size:14px;color:var(--tx);background:var(--in);border:1px solid var(--bd);border-radius:5px;padding:3px 6px;width:100%}
+input.n{width:64px;text-align:center}
+.name{font-size:13px;margin-bottom:3px;text-align:left}
+.qty{display:flex;align-items:center;justify-content:center;gap:4px}
+button{font:inherit;width:26px;height:26px;border:1px solid var(--bd);background:var(--hl);color:var(--tx);border-radius:5px;cursor:pointer;padding:0}
+.sum{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:16px}
+.box{background:var(--hl);border:1px solid var(--bd);border-radius:8px;padding:10px;text-align:center}
+.box b{display:block;font-size:1.4rem}.box span{font-size:.8rem;color:var(--mut)}
+:root{--bd:#e3e5e9;--tx:#2f3237;--mut:#8a8f98;--hl:#f3f4f6}
+body{background:linear-gradient(160deg,#f7f8fa,#e9ebef);min-height:100vh;font-family:Inter,'Segoe UI',system-ui,-apple-system,Roboto,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1040px;padding:28px 16px 40px}
+h1{margin:0 0 4px;font-size:1.6rem;font-weight:700;letter-spacing:-.02em;color:#2f3237}
+.sub{margin:0 0 18px;color:var(--mut);font-size:.9rem}
+.card{background:#fff;border-radius:18px;box-shadow:0 10px 30px rgba(30,35,45,.08),0 1px 3px rgba(30,35,45,.06)}
+table{border:none;border-collapse:separate;border-spacing:0}
+th,td{border:none;border-bottom:1px solid var(--bd);border-right:1px solid var(--bd)}
+th:last-child,td:last-child{border-right:none}
+tbody tr:last-child td{border-bottom:none}
+thead tr:nth-child(1) th{background:#2f3237;color:#fff;font-size:13px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;height:44px;border-color:#2f3237}
+thead tr:nth-child(2) th{background:#fff;font-weight:600;font-size:14px;border-bottom:3px solid #c9ccd2}
+thead tr:nth-child(2) th:nth-child(2){border-bottom-color:#e5484d;color:#c93a3f}
+thead tr:nth-child(2) th:nth-child(3){border-bottom-color:#f5a524;color:#b97a0a}
+thead tr:nth-child(2) th:nth-child(4){border-bottom-color:#3b82f6;color:#2563c9}
+thead tr:nth-child(3) th{background:var(--hl);font-size:11.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--mut);height:34px}
+tbody td{background:#fff;font-weight:600;font-size:15px;transition:background .15s}
+tbody tr:nth-child(even) td{background:#fafafb}
+tbody tr:hover td{background:#f1f3f5}
+tbody td:nth-child(3){border-left:2px solid #d5d8de}
+tbody td:nth-child(1),tbody td:nth-child(2){text-align:left}
+.name{font-weight:600;font-size:13.5px;color:#2f3237;margin-bottom:5px}
+input{border:1px solid #dcdfe4;border-radius:9px;padding:5px 9px;background:#fff;transition:box-shadow .15s,border-color .15s}
+input:focus{outline:none;border-color:#8a8f98;box-shadow:0 0 0 3px rgba(138,143,152,.2)}
+input.n{width:68px;font-weight:600}
+input[type=number]{-moz-appearance:textfield}
+input[type=number]::-webkit-inner-spin-button{display:none}
+button{width:28px;height:28px;border-radius:50%;border:1px solid #dcdfe4;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.06);font-size:16px;line-height:1;color:#2f3237;transition:all .15s}
+button:hover{background:#2f3237;color:#fff;border-color:#2f3237}
+.qty{justify-content:flex-start}
+.sum{gap:14px;margin-top:20px}
+.box{background:#fff;border:none;border-radius:16px;padding:14px 10px;box-shadow:0 6px 18px rgba(30,35,45,.07);border-top:4px solid #2f3237}
+.box:nth-child(1){border-top-color:#e5484d}.box:nth-child(2){border-top-color:#f5a524}.box:nth-child(3){border-top-color:#3b82f6}
+.box b{font-size:1.35rem;color:#2f3237;margin-bottom:2px}
+.box span{text-transform:uppercase;letter-spacing:.06em;font-size:.7rem;font-weight:600}
+</style></head><body><div class="wrap">
+<h1>Three Phase Load Distribution</h1><p class="sub">Enter quantity and wattage — loads are balanced across R, Y and B automatically.</p>
+<div class="scroll card"><table>
+<thead>
+<tr><th colspan="8">Three Phase</th></tr>
+<tr><th colspan="2"></th><th colspan="2">R Phase</th><th colspan="2">Y Phase</th><th colspan="2">B Phase</th></tr>
+<tr><th style="width:22%">No.</th><th>Total Watt</th><th class="no">No.</th><th>Total Watt</th><th class="no">No.</th><th>Total Watt</th><th class="no">No.</th><th>Total Watt</th></tr>
+</thead><tbody id="tb"></tbody></table></div>
+<div class="sum" id="sum"></div>
+</div>
+<script>
+const names=["Light","Fan","5A Plug","15A Plug","AC","Geyser"];
+const rows=[];
+for(let i=0;i<10;i++)rows.push({name:i<6?names[i]:"",custom:i>=6,qty:0,w:0});
+function split(n){
+  if(n<=0)return[0,0,0];
+  if(n===1)return[0,0,1];
+  if(n===2)return[0,1,1];
+  const b=Math.floor(n/3),r=n%3;
+  return[b+(r>0?1:0),b+(r>1?1:0),b];
+}
+const tb=document.getElementById('tb');
+rows.forEach((r,i)=>{
+  const tr=document.createElement('tr');
+  tr.innerHTML=`
+  <td><div class="name">${r.custom?`<input type="text" placeholder="Extra equipment ${i-5}" data-k="name">`:r.name}</div>
+  <div class="qty"><button data-k="dec" aria-label="decrease">−</button><input class="n" type="number" min="0" value="0" data-k="qty"><button data-k="inc" aria-label="increase">+</button></div></td>
+  <td><input class="n" style="width:90px" type="number" min="0" value="0" placeholder="Watt" data-k="w"></td><td class="no"></td><td></td><td class="no"></td><td></td><td class="no"></td><td></td>`;
+  tb.appendChild(tr);r.tr=tr;
+  tr.addEventListener('click',e=>{
+    const k=e.target.dataset.k;
+    if(k==='inc'){r.qty++;tr.querySelector('[data-k=qty]').value=r.qty;render()}
+    if(k==='dec'&&r.qty>0){r.qty--;tr.querySelector('[data-k=qty]').value=r.qty;render()}
+  });
+  tr.addEventListener('input',e=>{
+    const k=e.target.dataset.k;
+    if(k==='qty')r.qty=Math.max(0,parseInt(e.target.value)||0);
+    if(k==='w')r.w=Math.max(0,parseFloat(e.target.value)||0);
+    render();
+  });
+});
+function render(){
+  const Q=[0,0,0],W=[0,0,0];
+  rows.forEach(r=>{
+    const d=split(r.qty),c=r.tr.children;
+    d.forEach((q,p)=>{
+      Q[p]+=q;W[p]+=q*r.w;
+      c[p*2+2].textContent=q||'';c[p*2+3].textContent=q?Math.round(q*r.w*100)/100:'';
+    });
+  });
+  const f=n=>Math.round(n*100)/100,tq=Q[0]+Q[1]+Q[2],tw=W[0]+W[1]+W[2];
+  document.getElementById('sum').innerHTML=
+   ['R','Y','B'].map((p,i)=>`<div class="box"><b>${Q[i]} · ${f(W[i])} W</b><span>${p} Phase (qty · watt)</span></div>`).join('')+
+   `<div class="box"><b>${tq}</b><span>Total Quantity</span></div><div class="box"><b>${f(tw)} W</b><span>Total Wattage</span></div>`;
+}
+render();
+</script></body></html>
